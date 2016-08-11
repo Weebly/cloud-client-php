@@ -80,7 +80,7 @@ class CloudList implements \Iterator{
 		$this->index = 0;
 		$this->is_paginated = ($this->res->is_paginated);
 		$this->list = $class::arrayFromJSON($this->ids, $res->body);
-		$this->size = $this->is_paginated? $res->total : count($this->pages[0]);
+		$this->size = $this->is_paginated? $res->total : count($this->list);
 	}
 
 	/**
