@@ -185,7 +185,7 @@ A **mutable** and **deletable** respresentation of a site. To construct:
 
 To construct:
 
-	$site = new WeeblyCloud\Site($site_id);
+	$site = new WeeblyCloud\Site($user_id, $site_id);
 
 - **`publish()`** Publishes the site.
 - **`unpublish()`** Unpublishes the site.
