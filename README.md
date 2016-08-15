@@ -230,11 +230,9 @@ Not every resource has a cooresponding resource class. It is possible to make a 
 ```php
 $client = WeeblyCloud\Utils\CloudClient::getClient();
 ```
-Using that client, call `get`, `post`, `put`, `patch`, or `delete`  which take the parameters:
+Using that client, call `get`, `post`, `put`, `patch`, or `delete`. All client request methods take a url as their first argument. `post`, `patch`, and `put` take an optional hash map of data that will be sent in the request body. `get` takes an optional hash map whose values will be used in the query string of the request.
 
-- **url**: the endpoint to request.
-- **data**: an associative array of the request's body. *(opt.)*
-- **parameters:** query string parameters. For parameters specific to endpoints that support pagination, see the [API pagination documentation](https://cloud-developer.weebly.com/about-the-rest-apis.html#pagination). *(opt.)*
+The url **must not** include a leading slash.
 
 #### Request examples
 
@@ -265,10 +263,10 @@ $client->patch($endpoint, ["title"=>"New Title"]);
 $client = WeeblyCloud\Utils\CloudClient::getClient();
 
 # Build endpoint with IDs
-$endpoint = "user/{$user_id}/site/{$site_id}/page/{$page_id}";
+$endpoint = "user/{$user_id}/site";
 
-# Make the request
-$client->patch($endpoint, ["title"=>"New Title"]);
+# Make the request (get all sites this user owns)
+$client->get($endpoint, ["role"=>"owner"]);
 ```
 
 ### Handling Responses
