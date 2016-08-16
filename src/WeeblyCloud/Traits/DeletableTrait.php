@@ -14,11 +14,12 @@ use WeeblyCloud\Utils;
 /**
  * Allows the resource to be deleted.
  */
-trait DeletableTrait {
-	/**
-	 * Deletes the object from the database.
-	 */
-	public function delete(){
-			return Utils\CloudClient::getClient()->delete($this->url);
-	}
+trait DeletableTrait
+{
+    /**
+     * Deletes the object from the database.
+     */
+    public function delete() {
+            return Utils\CloudClient::getClient()->delete($this->url);
+    }
 }
