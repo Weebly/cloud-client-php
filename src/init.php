@@ -1,23 +1,23 @@
 <?php
 
-require_once(dirname(__FILE__) . "/WeeblyCloud/Utils/CloudClient.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Utils/CloudResponse.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Utils/CloudException.php");
+require_once(dirname(__FILE__) . "/Utils/CloudClient.php");
+require_once(dirname(__FILE__) . "/Utils/CloudResponse.php");
+require_once(dirname(__FILE__) . "/Utils/CloudException.php");
 
-require_once(dirname(__FILE__) . "/WeeblyCloud/Utils/CloudResource.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Utils/CloudList.php");
+require_once(dirname(__FILE__) . "/Utils/CloudResource.php");
+require_once(dirname(__FILE__) . "/Utils/CloudList.php");
 
-require_once(dirname(__FILE__) . "/WeeblyCloud/Traits/DeletableTrait.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Traits/MutableTrait.php");
+require_once(dirname(__FILE__) . "/Traits/DeletableTrait.php");
+require_once(dirname(__FILE__) . "/Traits/MutableTrait.php");
 
-require_once(dirname(__FILE__) . "/WeeblyCloud/Account.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Blog.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/BlogPost.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Form.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/FormEntry.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Group.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Member.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Page.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Plan.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/Site.php");
-require_once(dirname(__FILE__) . "/WeeblyCloud/User.php");
+require_once(dirname(__FILE__) . "/Account.php");
+require_once(dirname(__FILE__) . "/Blog.php");
+require_once(dirname(__FILE__) . "/BlogPost.php");
+require_once(dirname(__FILE__) . "/Form.php");
+require_once(dirname(__FILE__) . "/FormEntry.php");
+require_once(dirname(__FILE__) . "/Group.php");
+require_once(dirname(__FILE__) . "/Member.php");
+require_once(dirname(__FILE__) . "/Page.php");
+require_once(dirname(__FILE__) . "/Plan.php");
+require_once(dirname(__FILE__) . "/Site.php");
+require_once(dirname(__FILE__) . "/User.php");
