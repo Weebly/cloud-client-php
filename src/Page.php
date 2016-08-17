@@ -46,7 +46,6 @@ class Page extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the Page's properties if initialize
      *          is false.
-     * @return Page
      */
     public function __construct($user_id, $site_id, $page_id, $initialize=true, $existing = null) {
         $this->user_id = $user_id;
@@ -70,7 +69,8 @@ class Page extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the Pages
      *              (user_id and site_id).
      * @param string $json JSON of a list of pages.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];

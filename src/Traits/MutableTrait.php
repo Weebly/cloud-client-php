@@ -28,9 +28,9 @@ trait MutableTrait
      * Sets a property of the resource. This change is NOT
      * saved in the database until save() is called.
      *
-     * @param string $property
-     * @param mixed $value
-     * @return boolean
+     * @param string $property The name of the property to change.
+     * @param mixed $value The value of the new property.
+     * @return boolean True if the property exists and was set.
      */
     public function setProperty($property, $value) {
         $this->changed[$property] = $value;

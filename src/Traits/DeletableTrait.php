@@ -20,6 +20,6 @@ trait DeletableTrait
      * Deletes the object from the database.
      */
     public function delete() {
-            return Utils\CloudClient::getClient()->delete($this->url);
+            Utils\CloudClient::getClient()->delete($this->url);
     }
 }

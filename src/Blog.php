@@ -62,7 +62,7 @@ class Blog extends Utils\CloudResource
     /**
      * Returns a CloudList of BlogPosts on this Blog.
      *
-     * @return CloudList
+     * @return Utils\CloudList
      */
     public function listBlogPosts() {
         $client = Utils\CloudClient::getClient();
@@ -78,6 +78,7 @@ class Blog extends Utils\CloudResource
      * Returns the BlogPost with the given id.
      *
      * @param string $post_id ID of the BlogPost to return.
+     *
      * @return BlogPost
      */
     public function getBlogPost($post_id) {
@@ -89,6 +90,7 @@ class Blog extends Utils\CloudResource
      *
      * @param string $post_body The body of the BlogPost.
      * @param array $data Optional data about the BlogPost.
+     *
      * @return BlogPost
      */
     public function createBlogPost($post_body, $data = []) {
@@ -108,7 +110,8 @@ class Blog extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the Blogs
      *              (user_id and site_id).
      * @param string $json JSON of a list of blogs.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];

@@ -66,7 +66,7 @@ Common methods:
 - The method **`$resource->delete()`** deletes the resource from the database. If the resource is not deletable, calling this method will throw an exception.
 
 ### Instantiating Resources
-The library provides classes that represent API resources. For example, to create an object representing a site with id `$site_id` and owned by `$user_id`:
+For example, to create an object representing a site with id `$site_id` and owned by `$user_id`:
 
 	$site = new WeeblyCloud\Site($user_id, $site_id);
 
@@ -77,13 +77,13 @@ For example, to retrieve all the sites of a user without getting that user's inf
 	$sites = (new WeeblyCloud\User($user_id, false))->listSites();
 
 ### Iterable Results
-Methods beginning with `list` return a `CloudList`. Use the `next` function to iterate through the list. For instance:
+Methods beginning with `list` return a `CloudList`. Use the `next` function or a foreach loop to iterate through the list. For example:
 
 ```php
 $sites = (new WeeblyCloud\User($user_id))->listSites();
 
 while ($site = $sites->next()) {
-	print($site->getProperty("site_title"));
+	print($site->getProperty("site_title")."\n");
 }
 ```
 This would list the titles of all sites belonging to a given user.
@@ -242,7 +242,7 @@ The url **must not** include a leading slash.
 $client = WeeblyCloud\Utils\CloudClient::getClient();
 
 # Request the /account endpoint
-client->get("account");
+$client->get("account");
 ```
 
 ##### Update a page title
@@ -270,7 +270,7 @@ $client->get($endpoint, ["role"=>"owner"]);
 ```
 
 ### Handling Responses
-All requests return a `CloudResponse` object or throw an Exception (see error handling). The JSON returned by the request can be accessed through the response's `body` property.
+All requests return a `CloudResponse` object or throw a CloudException. The JSON returned by the request can be accessed through the response's `body` property.
 
 ```php
 # Make a request

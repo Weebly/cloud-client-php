@@ -29,7 +29,6 @@ class Plan extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the Plan's properties if initialize
      *          is false.
-     * @return Plan
      */
     public function __construct($plan_id, $initialize = true, $existing = null) {
         $this->url = "plan/$plan_id";
@@ -62,7 +61,8 @@ class Plan extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the Plans
      *              (none).
      * @param string $json JSON of a list of plans.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $plans = array();

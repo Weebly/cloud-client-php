@@ -46,7 +46,6 @@ class Member extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the Member's properties if initialize
      *          is false.
-     * @return Member
      */
     public function __construct($user_id, $site_id, $member_id, $initialize=true, $existing = null) {
         $this->user_id = $user_id;
@@ -70,7 +69,8 @@ class Member extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the Members
      *              (user_id and site_id).
      * @param string $json JSON of a list of members.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];

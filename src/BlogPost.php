@@ -54,7 +54,6 @@ class BlogPost extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the BlogPost's properties if initialize
      *          is false.
-     * @return BlogPost
      */
     public function __construct($user_id, $site_id, $blog_id, $post_id, $initialize = true, $existing = null) {
         $this->user_id = $user_id;
@@ -79,7 +78,8 @@ class BlogPost extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the BlogPosts
      *              (user_id, site_id, and blog_id).
      * @param string $json JSON of a list of BlogPosts.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];

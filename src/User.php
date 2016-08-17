@@ -30,7 +30,6 @@ class User extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the User's properties if initialize
      *          is false.
-     * @return User
      */
     public function __construct($user_id, $initialize = true, $existing = null) {
         $this->user_id = $user_id;
@@ -46,6 +45,7 @@ class User extends Utils\CloudResource
      * Extracts properties from User's unique JSON response format.
      *
      * @param string $json JSON from an API response.
+     *
      * @return object
      */
     protected function propertiesFromJSON($json) {
@@ -75,6 +75,8 @@ class User extends Utils\CloudResource
     /**
      * Generates a one-time login link. Will return an error
      * if the user has been disabled.
+     *
+     * @return string
      */
     public function loginLink() {
         $client = Utils\CloudClient::getClient();
@@ -89,6 +91,7 @@ class User extends Utils\CloudResource
      * response JSON.
      *
      * @param array $search_params Optional search parameters.
+     *
      * @return array
      */
     public function getAvailableThemes($search_params = []) {
@@ -120,6 +123,8 @@ class User extends Utils\CloudResource
      * @param array $data Associative array of site
      *      properties. For the allowed properties, see the
      *      API documentation.
+     *
+     * @return Site
      */
     public function createSite($domain, $data = []) {
         $data = array_merge(["domain"=>$domain], $data);
@@ -133,6 +138,8 @@ class User extends Utils\CloudResource
      *
      * @param array $search_params Search query parameters. See the API
      *              documentation for valid parameters.
+     *
+     * @return Utils\CloudList
      */
     public function listSites($search_params = []) {
         $client = Utils\CloudClient::getClient();
@@ -144,6 +151,7 @@ class User extends Utils\CloudResource
      * Returns the Site with the given id.
      *
      * @param string $site_id ID of the Site to return.
+     *
      * @return Site
      */
     public function getSite($site_id) {

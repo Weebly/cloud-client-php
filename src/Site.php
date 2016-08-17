@@ -55,6 +55,7 @@ class Site extends Utils\CloudResource
      * Extracts properties from Site's unique JSON response format.
      *
      * @param string $json JSON from an API response.
+     *
      * @return object
      */
     protected function propertiesFromJSON($json) {
@@ -190,7 +191,9 @@ class Site extends Utils\CloudResource
 
     /**
      * Returns the Blog with the given ID.
+     *
      * @param string $blog_id ID of the Blog to return.
+     *
      * @return Blog
      */
     public function getBlog($blog_id) {
@@ -216,7 +219,9 @@ class Site extends Utils\CloudResource
 
     /**
      * Returns the Form with the given id.
+     *
      * @param string $form_id ID of the Form to return.
+     *
      * @return Form
      */
     public function getForm($form_id) {
@@ -228,6 +233,7 @@ class Site extends Utils\CloudResource
      *
      * @param array $search_params Optional search query parameters. See the API
      *              documentation for valid parameters.
+     *
      * @return Utils\CloudList
      */
     public function listPages($search_params = []) {
@@ -242,7 +248,9 @@ class Site extends Utils\CloudResource
 
     /**
      * Returns the Page with the given id.
+     *
      * @param string $page_id ID of the Page to return.
+     *
      * @return Page
      */
     public function getPage($page_id) {
@@ -254,6 +262,7 @@ class Site extends Utils\CloudResource
      *
      * @param array $search_params Optional search query parameters. See the API
      *              documentation for valid parameters.
+     *
      * @return Utils\CloudList
      */
     public function listGroups($search_params = []) {
@@ -269,6 +278,7 @@ class Site extends Utils\CloudResource
     /**
      * Returns the Group with the given id.
      * @param string $group_id ID of the Group to return.
+     *
      * @return Group
      */
     public function getGroup($group_id) {
@@ -279,6 +289,7 @@ class Site extends Utils\CloudResource
      * Creates a new Group of members for the site.
      *
      * @param string $name The name of the group to be created.
+     *
      * @return Group
      */
     public function createGroup($name) {
@@ -292,6 +303,7 @@ class Site extends Utils\CloudResource
      *
      * @param array $search_params Optional search query parameters. See the API
      *              documentation for valid parameters.
+     *
      * @return Utils\CloudList
      */
     public function listMembers($search_params = []) {
@@ -306,7 +318,9 @@ class Site extends Utils\CloudResource
 
     /**
      * Returns the Member with the given id.
+     *
      * @param string $member_id ID of the Member to return.
+     *
      * @return Member
      */
     public function getMember($member_id) {
@@ -318,6 +332,7 @@ class Site extends Utils\CloudResource
      *
      * @param array $data The properties of the new member. See the
      * API for required properties.
+     *
      * @return Member
      */
     public function createMember($data) {
@@ -336,7 +351,8 @@ class Site extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the Sites
      *              (user_id).
      * @param string $json JSON of a list of sites.
-     * @return Utils\CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];

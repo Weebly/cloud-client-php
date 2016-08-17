@@ -56,6 +56,7 @@ abstract class CloudResource
      * Gets a property of the resource.
      *
      * @param string $property The property name.
+     *
      * @return mixed
      */
     public function getProperty($property) {
@@ -69,6 +70,8 @@ abstract class CloudResource
     * Extracts properties from normal JSON response format;
     * this is overriden in classes with special formats.
     * @param string $json
+    *
+    * @return object Properties extracted from JSON.
     */
     protected function propertiesFromJSON($json){
         return json_decode($json);

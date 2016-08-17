@@ -14,9 +14,9 @@ namespace WeeblyCloud\Utils;
 class CloudResponse
 {
     /**
-     * The body of the response in JSON format.
+     * The body of the response.
      *
-     * @var object $body
+     * @var string $body
      */
     public $body;
 
@@ -76,7 +76,7 @@ class CloudResponse
      *
      * @param string $header The headers from the HTTP response.
      * @param string $response The body of the response in JSON format.
-     * @param string $url The endpoint URL used to retrieve the response
+     * @param string $url The endpoint URL used to retrieve the response.
      * @param array $parameters The query parameters used to retrieve the response.
      */
     public function __construct($header, $response, $url, $parameters) {
@@ -115,7 +115,7 @@ class CloudResponse
     * Returns the CloudResponse containing the previous page
     * if there is a previous page, null if there is no previous page.
     *
-    * @return instance
+    * @return CloudResponse
     */
     public function getPreviousPage() {
         if((!$this->is_paginated) || ($this->page <= 1)) {

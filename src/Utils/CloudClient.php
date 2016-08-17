@@ -21,28 +21,28 @@ class CloudClient
     /**
      * Admin API key.
      *
-     * @var $api_key
+     * @var string $api_key
      */
     public $api_key;
 
     /**
      * API secret key.
      *
-     * @var $api_secret
+     * @var string $api_secret
      */
     public $api_secret;
 
     /**
      * Instance of CloudClient.
      *
-     * @var $instance
+     * @var CloudClient $instance
      */
     private static $instance;
 
     /**
      * Gets the instance of the CloudClient.
      *
-     * @return instance
+     * @return CloudClient
      */
     public static function getClient() {
         if(!isset(static::$instance)) {
@@ -68,7 +68,6 @@ class CloudClient
      *
      * @param string $api_key
      * @param string $api_secret
-     * @return instance
      */
     protected function __construct($api_key, $api_secret) {
         $this->api_key = $api_key;
@@ -79,9 +78,10 @@ class CloudClient
      * Makes a curl request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param string $method
-     * @param array $data
-     * @return \Weebly\CloudResponse
+     * @param string $method The HTTP method (POST, PUT, PATCH, GET, or DELETE).
+     * @param array $data The data to send with the request, either in the body or
+     *                      in the query string.
+     * @return CloudResponse
      */
     private function makeRequest($url, $method, $data) {
 
@@ -137,7 +137,9 @@ class CloudClient
      * Makes a GET request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param array $parameters
+     * @param array $parameters The parameters to put in the query string.
+     *
+     * @return CloudResponse
      */
     public function get($url, $parameters = []) {
         return $this->makeRequest($url, 'GET', $parameters);
@@ -150,6 +152,8 @@ class CloudClient
      * @param array $search_params Optional search parameters.
      * @param int $page_size The maximum number of results per page, if the
      *                      endpoint is paginated.
+     *
+     * @return CloudResponse
      */
     public function getList($url, $search_params = [], $page_size = null) {
         if ($page_size) {
@@ -162,7 +166,9 @@ class CloudClient
      * Makes a DELETE request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param array $parameters
+     * @param array $parameters The parameters to put in the query string.
+     *
+     * @return CloudResponse
      */
     public function delete($url, $parameters = []) {
         return $this->makeRequest($url, 'DELETE', $parameters);
@@ -172,7 +178,9 @@ class CloudClient
      * Makes a POST request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param array $data
+     * @param array $data The data to send in the request body.
+     *
+     * @return CloudResponse
      */
     public function post($url, $data = []) {
         return $this->makeRequest($url, 'POST', $data);
@@ -182,7 +190,9 @@ class CloudClient
      * Makes a PATCH request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param array $data
+     * @param array $data The data to send in the request body.
+     *
+     * @return CloudResponse
      */
     public function patch($url, $data = []) {
         return $this->makeRequest($url, 'PATCH', $data);
@@ -192,7 +202,9 @@ class CloudClient
      * Makes a PUT request to the Weebly Cloud API.
      *
      * @param string $url The endpoint url, not including domain or query string.
-     * @param array $data
+     * @param array $data The data to send in the request body.
+     *
+     * @return CloudResponse
      */
     public function put($url, $data = []) {
         return $this->makeRequest($url, 'PUT', $data);

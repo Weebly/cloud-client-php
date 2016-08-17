@@ -22,6 +22,7 @@ class Account extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the Account's properties if initialize
      *          is false.
+     *
      * @return Account
      */
     public function __construct($initialize = true, $existing = null) {
@@ -35,6 +36,7 @@ class Account extends Utils\CloudResource
      * Extracts properties from Account's unique JSON response format.
      *
      * @param string $json JSON from an API response.
+     *
      * @return object
      */
     protected function propertiesFromJSON($json) {
@@ -46,6 +48,7 @@ class Account extends Utils\CloudResource
      *
      * @param string $email The user's email. Must be unique.
      * @param array $data Associative array of user properties.
+     *
      * @return User
      */
     public function createUser($email, $data = []) {
@@ -59,7 +62,8 @@ class Account extends Utils\CloudResource
 
     /**
     * Gets a CloudList of available plans.
-    * @return CloudList
+    *
+    * @return Utils\CloudList
     */
     public function listPlans() {
         $client = Utils\CloudClient::getClient();
@@ -74,6 +78,7 @@ class Account extends Utils\CloudResource
     /**
     * Gets a single Plan by ID.
     * @param string $plan_id ID of the plan to return.
+    *
     * @return Plan
     */
     public function getPlan($plan_id) {

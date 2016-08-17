@@ -46,7 +46,7 @@ class CloudList implements \Iterator
      * The size of the list. May be greater than count($this->list)
      * if the endpoint is paginated and not all pages have been loaded.
      *
-     * @var $size
+     * @var int $size
      */
     private $size;
 
@@ -70,9 +70,8 @@ class CloudList implements \Iterator
      *
      * @param CloudResponse $res A CloudResponse returned by a GET call.
      * @param string $class The fully qualified class name of the class stored in the list.
-     * @param array $ids The ids required to construct the CloudResources in list
-     *              (e.g. user_id for Site objects).
-     * @return CloudList
+     * @param array $ids Array of the ids required to construct the CloudResources in list
+     *              (e.g. [user_id] for Site objects).
      */
     public function __construct($res, $class, $ids) {
         $this->res = $res;

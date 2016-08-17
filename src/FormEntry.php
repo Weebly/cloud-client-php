@@ -53,7 +53,6 @@ class FormEntry extends Utils\CloudResource
      *          be retrieved by calling get().
      * @param object $existing Object to use as the FormEntry's properties if initialize
      *          is false.
-     * @return FormEntry
      */
     public function __construct($user_id, $site_id, $form_id, $entry_id, $initialize = true, $existing = null) {
         $this->user_id = $user_id;
@@ -78,7 +77,8 @@ class FormEntry extends Utils\CloudResource
      * @param array $ids The IDs necessary to construct the FormEntries
      *              (user_id, site_id, and form_id).
      * @param string $json JSON of a list of form entries.
-     * @return CloudList
+     *
+     * @return array
      */
     public static function arrayFromJSON($ids, $json) {
         $user_id = $ids["user_id"];
