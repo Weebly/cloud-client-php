@@ -102,7 +102,9 @@ class CloudClient
                 CURLOPT_HTTPHEADER => array(
                     'Content-type: application/json',
                     'X-Public-Key: ' . $this->api_key,
-                    'X-Signed-Request-Hash: ' . $hash
+                    'X-Signed-Request-Hash: ' . $hash,
+                    'X-W-Client-Type: php',
+                    'X-W-Client-Version: 1.0.0'
                 ),
                 CURLOPT_HEADER => 1,
                 CURLOPT_FOLLOWLOCATION => true
