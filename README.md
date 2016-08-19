@@ -18,10 +18,47 @@ You must set your public and secret key **before** making any calls to the API.
 #### Typical use case: create a user and site, get a login link
 
 ```php
-$account = new WeeblyCloud\Account();
-$user = $account->createUser("test@domain.com");
-$site = $user->createSite("domain.com", ["site_title"=>"My Website"]);
-print($site->loginLink());
+// Get the admin account
+try {
+	$account = new WeeblyCloud\Account();
+} catch (WeeblyCloud\Utils\CloudException $e) {
+	print("Unable to get account.\n");
+	print("Error code {$e->getCode()}: {$e->getMessage()}.\n");
+	exit();
+}
+
+//Create a new user
+try {
+	$user = $account->createUser("test@domain.com");
+} catch (WeeblyCloud\Utils\CloudException $e) {
+	print("Unable to create user.\n");
+	print("Error code {$e->getCode()}: {$e->getMessage()}.\n");
+	exit();
+}
+
+//Store the user's ID
+$user_id = $user->getProperty("user_id");
+
+//Create a site
+try {
+	$site = $user->createSite("domain.com", ["site_title"=>"My Website"]);
+} catch (WeeblyCloud\Utils\CloudException $e) {
+	print("Unable to create site.\n");
+	print("Error code {$e->getCode()}: {$e->getMessage()}.\n");
+	exit();
+}
+
+//Store the site's ID
+$site_id = $site->getProperty("site_id");
+
+//Get and print a login link
+try {
+	print($site->loginLink());
+} catch (WeeblyCloud\Utils\CloudException $e) {
+	print("Unable to generate login link.\n");
+	print("Error code {$e->getCode()}: {$e->getMessage()}.\n");
+	exit();
+}
 ```
 
 #### Printing the name of all pages in a site matching the query "help"
@@ -295,7 +332,3 @@ while($response){
 }
 ```
 Get all of a user's sites, 10 sites per page.
-
-##Questions?
-
-If you have any questions or feature requests pertaining to this library, please open up a new issue. For general API questions, please contact us at dev-support@weebly.com, and we'll be happy to lend a hand!
