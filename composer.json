@@ -1,0 +1,14 @@
+{
+    "name": "weebly/cloud-client",
+    "description": "Weebly Cloud API library",
+    "type": "library",
+    "require": {
+        "php": "^5.4.0 || ^7.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "homepage": "https://cloud-developer.weebly.com",
+    "autoload": {
+        "psr-4": { "WeeblyCloud\\" : "src/" }
+    }
+}
