@@ -2,6 +2,11 @@
 
 ## Installation
 
+###Composer
+
+	composer require weebly/cloud-client
+
+###Other
 Download the latest release and include init.php in your code.
 
 	require_once("path/to/cloud-client-php/src/init.php");
