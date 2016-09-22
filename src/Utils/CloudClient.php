@@ -59,7 +59,7 @@ class CloudClient
      * @param string $api_key
      * @param string $api_secret
      */
-    public function setKeys($api_key, $api_secret) {
+    public static function setKeys($api_key, $api_secret) {
         static::$instance = new static($api_key, $api_secret);
     }
 
