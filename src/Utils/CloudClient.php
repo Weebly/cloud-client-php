@@ -120,7 +120,7 @@ class CloudClient
         $header = substr($result, 0, $header_size);
         $response = substr($result, $header_size);
 
-        if($info['http_code']!=204 && (!$response || json_decode($response)->error)) {
+        if($info['http_code']!=204 && (!$response || !empty(json_decode($response)->error))) {
             $error = json_decode($response)->error;
 
             if($error) {

@@ -1,5 +1,5 @@
 {
-    "name": "weebly/cloud-client",
+    "name": "amarsyla/cloud-client",
     "description": "Weebly Cloud API library",
     "type": "library",
     "require": {
