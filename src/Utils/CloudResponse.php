@@ -84,9 +84,9 @@ class CloudResponse
         preg_match_all("/^X-Resultset-([^:]+): ([\d]+).+$/m", $header, $p);
         $header_fields = array_combine($p[1], $p[2]);
 
-        $this->total = $header_fields['Total'] ?: -1;
-        $this->page_limit = $header_fields['Limit'] ?: -1;
-        $this->page = $header_fields['Page'] ?: -1;
+        $this->total = $header_fields['Total'] ?? -1;
+        $this->page_limit = $header_fields['Limit'] ?? -1;
+        $this->page = $header_fields['Page'] ?? -1;
         $this->page_count = (int) ceil($this->total / $this->page_limit);
         $this->is_paginated = (($this->total) > 0);
         $this->body = $response;
