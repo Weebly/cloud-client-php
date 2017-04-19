@@ -19,7 +19,8 @@ trait MutableTrait
     /**
      * Saves changed values to the database.
      */
-    public function save() {
+    public function save()
+    {
         Utils\CloudClient::getClient()->patch($this->url, $this->changed);
         $this->changed = array();
     }
@@ -32,14 +33,15 @@ trait MutableTrait
      * @param mixed $value The value of the new property.
      * @return boolean True if the property exists and was set.
      */
-    public function setProperty($property, $value) {
+    public function setProperty($property, $value)
+    {
         $this->changed[$property] = $value;
 
         if (!$this->got) {
             $this->get();
         }
 
-        if(isset($this->properties->$property)) {
+        if (isset($this->properties->$property)) {
             $this->properties->$property = $value;
             return true;
         }
