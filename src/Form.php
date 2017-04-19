@@ -47,7 +47,8 @@ class Form extends Utils\CloudResource
      * @param object $existing Object to use as the Form's properties if initialize
      *          is false.
      */
-    public function __construct($user_id, $site_id, $form_id, $initialize = true, $existing = null) {
+    public function __construct($user_id, $site_id, $form_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->site_id = $site_id;
         $this->form_id = $form_id;
@@ -67,7 +68,8 @@ class Form extends Utils\CloudResource
      *
      * @return CloudList
      */
-    public function listFormEntries($search_params = []) {
+    public function listFormEntries($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/entry", $search_params);
         return new Utils\CloudList(
@@ -84,7 +86,8 @@ class Form extends Utils\CloudResource
      *
      * @return FormEntry
      */
-    public function getFormEntry($form_entry_id) {
+    public function getFormEntry($form_entry_id)
+    {
         return new FormEntry($this->user_id, $this->site_id, $this->form_id, $form_entry_id);
     }
 
@@ -101,7 +104,8 @@ class Form extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $user_id = $ids["user_id"];
         $site_id = $ids["site_id"];
         $forms = array();

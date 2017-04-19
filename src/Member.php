@@ -47,7 +47,8 @@ class Member extends Utils\CloudResource
      * @param object $existing Object to use as the Member's properties if initialize
      *          is false.
      */
-    public function __construct($user_id, $site_id, $member_id, $initialize=true, $existing = null) {
+    public function __construct($user_id, $site_id, $member_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->site_id = $site_id;
         $this->member_id = $member_id;
@@ -72,7 +73,8 @@ class Member extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $user_id = $ids["user_id"];
         $site_id = $ids["site_id"];
         $members = array();
@@ -82,5 +84,4 @@ class Member extends Utils\CloudResource
         }
         return $members;
     }
-
 }
