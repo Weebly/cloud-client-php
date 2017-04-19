@@ -73,7 +73,8 @@ class CloudList implements \Iterator
      * @param array $ids Array of the ids required to construct the CloudResources in list
      *              (e.g. [user_id] for Site objects).
      */
-    public function __construct($res, $class, $ids) {
+    public function __construct($res, $class, $ids)
+    {
         $this->res = $res;
         $this->class = $class;
         $this->ids = $ids;
@@ -89,7 +90,8 @@ class CloudList implements \Iterator
      *
      * @return int
      */
-    public function getSize() {
+    public function getSize()
+    {
         return $this->size;
     }
 
@@ -99,7 +101,8 @@ class CloudList implements \Iterator
      *
      * @return boolean
      */
-    private function nextPage() {
+    private function nextPage()
+    {
         if (!$this->isPaginated() || !$this->res) {
             return false;
         }
@@ -119,7 +122,8 @@ class CloudList implements \Iterator
     /**
      * Rewinds the list to the beginning.
      */
-    public function rewind() {
+    public function rewind()
+    {
         $this->index = 0;
     }
 
@@ -128,7 +132,8 @@ class CloudList implements \Iterator
      *
      * @return CloudResource
      */
-    public function current() {
+    public function current()
+    {
         return $this->list[$this->index];
     }
 
@@ -137,7 +142,8 @@ class CloudList implements \Iterator
      *
      * @return int
      */
-    public function key() {
+    public function key()
+    {
         return $this->index;
     }
 
@@ -148,7 +154,8 @@ class CloudList implements \Iterator
      *
      * @return CloudResource
      */
-    public function next() {
+    public function next()
+    {
         $this->index++;
         if ($this->index > (count($this->list)) &&
             (!$this->isPaginated() || !$this->nextPage())) {
@@ -163,7 +170,8 @@ class CloudList implements \Iterator
      *
      * @return boolean
      */
-    public function valid() {
+    public function valid()
+    {
         return ($this->index < ($this->size));
     }
 
@@ -172,8 +180,8 @@ class CloudList implements \Iterator
      *
      * @return boolean
      */
-    public function isPaginated() {
+    public function isPaginated()
+    {
         return $this->is_paginated;
     }
-
 }

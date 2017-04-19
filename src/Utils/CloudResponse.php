@@ -79,7 +79,8 @@ class CloudResponse
      * @param string $url The endpoint URL used to retrieve the response.
      * @param array $parameters The query parameters used to retrieve the response.
      */
-    public function __construct($header, $response, $url, $parameters) {
+    public function __construct($header, $response, $url, $parameters)
+    {
         //Extract custom fields from the header string
         preg_match_all("/^X-Resultset-([^:]+): ([\d]+).+$/m", $header, $p);
         $header_fields = array_combine($p[1], $p[2]);
@@ -100,8 +101,9 @@ class CloudResponse
     *
     * @return CloudResponse
     */
-    public function getNextPage() {
-        if((!$this->is_paginated) || ($this->page >= $this->page_count)) {
+    public function getNextPage()
+    {
+        if ((!$this->is_paginated) || ($this->page >= $this->page_count)) {
             return null;
         }
 
@@ -117,8 +119,9 @@ class CloudResponse
     *
     * @return CloudResponse
     */
-    public function getPreviousPage() {
-        if((!$this->is_paginated) || ($this->page <= 1)) {
+    public function getPreviousPage()
+    {
+        if ((!$this->is_paginated) || ($this->page <= 1)) {
             return null;
         }
 
