@@ -25,9 +25,10 @@ class Account extends Utils\CloudResource
      *
      * @return Account
      */
-    public function __construct($initialize = true, $existing = null) {
+    public function __construct($initialize = true, $existing = null)
+    {
         $this->url = "account";
-        if($initialize) {
+        if ($initialize) {
             $this->get();
         }
     }
@@ -39,7 +40,8 @@ class Account extends Utils\CloudResource
      *
      * @return object
      */
-    protected function propertiesFromJSON($json) {
+    protected function propertiesFromJSON($json)
+    {
         return json_decode($json)->account;
     }
 
@@ -51,11 +53,12 @@ class Account extends Utils\CloudResource
      *
      * @return User
      */
-    public function createUser($email, $data = []) {
+    public function createUser($email, $data = [])
+    {
         $client = Utils\CloudClient::getClient();
         $user =  json_decode($client->post(
             "user",
-            array_merge(["email"=>$email],$data)
+            array_merge(["email"=>$email], $data)
         )->body)->user;
         return new User($user->user_id, false, $user);
     }
@@ -65,7 +68,8 @@ class Account extends Utils\CloudResource
     *
     * @return Utils\CloudList
     */
-    public function listPlans() {
+    public function listPlans()
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList("plan");
         return new Utils\CloudList(
@@ -81,8 +85,8 @@ class Account extends Utils\CloudResource
     *
     * @return Plan
     */
-    public function getPlan($plan_id) {
+    public function getPlan($plan_id)
+    {
         return new Plan($plan_id);
     }
-
 }

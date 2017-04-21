@@ -44,8 +44,9 @@ class CloudClient
      *
      * @return CloudClient
      */
-    public static function getClient() {
-        if(!isset(static::$instance)) {
+    public static function getClient()
+    {
+        if (!isset(static::$instance)) {
             throw new \Exception('Error: client not instantiated; must set keys before calling.');
         }
 
@@ -59,7 +60,8 @@ class CloudClient
      * @param string $api_key
      * @param string $api_secret
      */
-    public static function setKeys($api_key, $api_secret) {
+    public static function setKeys($api_key, $api_secret)
+    {
         static::$instance = new static($api_key, $api_secret);
     }
 
@@ -69,7 +71,8 @@ class CloudClient
      * @param string $api_key
      * @param string $api_secret
      */
-    protected function __construct($api_key, $api_secret) {
+    protected function __construct($api_key, $api_secret)
+    {
         $this->api_key = $api_key;
         $this->api_secret = $api_secret;
     }
@@ -83,7 +86,8 @@ class CloudClient
      *                      in the query string.
      * @return CloudResponse
      */
-    private function makeRequest($url, $method, $data) {
+    private function makeRequest($url, $method, $data)
+    {
 
         $content = in_array($method, ['POST','PUT','PATCH']) ? json_encode($data) : '[]';
         $parameters = in_array($method, ['DELETE','GET']) ? $data : [];
@@ -120,10 +124,10 @@ class CloudClient
         $header = substr($result, 0, $header_size);
         $response = substr($result, $header_size);
 
-        if($info['http_code']!=204 && (!$response || json_decode($response)->error)) {
+        if ($info['http_code']!=204 && (!$response || isset(json_decode($response)->error))) {
             $error = json_decode($response)->error;
 
-            if($error) {
+            if ($error) {
                 $error_message = $error->message;
             } else {
                 $error_message = 'No response';
@@ -143,7 +147,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function get($url, $parameters = []) {
+    public function get($url, $parameters = [])
+    {
         return $this->makeRequest($url, 'GET', $parameters);
     }
 
@@ -157,7 +162,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function getList($url, $search_params = [], $page_size = null) {
+    public function getList($url, $search_params = [], $page_size = null)
+    {
         if ($page_size) {
             $search_params = array_merge($search_params, ["limit" => $page_size]);
         }
@@ -172,7 +178,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function delete($url, $parameters = []) {
+    public function delete($url, $parameters = [])
+    {
         return $this->makeRequest($url, 'DELETE', $parameters);
     }
 
@@ -184,7 +191,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function post($url, $data = []) {
+    public function post($url, $data = [])
+    {
         return $this->makeRequest($url, 'POST', $data);
     }
 
@@ -196,7 +204,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function patch($url, $data = []) {
+    public function patch($url, $data = [])
+    {
         return $this->makeRequest($url, 'PATCH', $data);
     }
 
@@ -208,7 +217,8 @@ class CloudClient
      *
      * @return CloudResponse
      */
-    public function put($url, $data = []) {
+    public function put($url, $data = [])
+    {
         return $this->makeRequest($url, 'PUT', $data);
     }
 }

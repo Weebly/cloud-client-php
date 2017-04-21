@@ -31,7 +31,8 @@ class User extends Utils\CloudResource
      * @param object $existing Object to use as the User's properties if initialize
      *          is false.
      */
-    public function __construct($user_id, $initialize = true, $existing = null) {
+    public function __construct($user_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->url = "user/$user_id";
         if ($initialize) {
@@ -48,7 +49,8 @@ class User extends Utils\CloudResource
      *
      * @return object
      */
-    protected function propertiesFromJSON($json) {
+    protected function propertiesFromJSON($json)
+    {
         return json_decode($json)->user;
     }
 
@@ -58,7 +60,8 @@ class User extends Utils\CloudResource
      * to log in and edit their sites. When a user is created,
      * their account is automatically enabled.
      */
-    public function enable() {
+    public function enable()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/enable");
     }
@@ -67,7 +70,8 @@ class User extends Utils\CloudResource
      * Disables a user account, preventing them from
      * logging in or editing their sites.
      */
-    public function disable() {
+    public function disable()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/disable");
     }
@@ -78,7 +82,8 @@ class User extends Utils\CloudResource
      *
      * @return string
      */
-    public function loginLink() {
+    public function loginLink()
+    {
         $client = Utils\CloudClient::getClient();
         $res = $client->post($this->url . "/loginLink");
         return json_decode($res->body)->link;
@@ -94,7 +99,8 @@ class User extends Utils\CloudResource
      *
      * @return array
      */
-    public function getAvailableThemes($search_params = []) {
+    public function getAvailableThemes($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res = $client->getList($this->url . "/theme", $search_params);
         return json_decode($res->body)->data;
@@ -108,7 +114,8 @@ class User extends Utils\CloudResource
      *          containing the theme. Must be publicly
      *          accessible.
      */
-    public function createCustomTheme($name, $zip_url) {
+    public function createCustomTheme($name, $zip_url)
+    {
         $client = Utils\CloudClient::getClient();
         $client->post(
             $this->url . "/theme",
@@ -126,7 +133,8 @@ class User extends Utils\CloudResource
      *
      * @return Site
      */
-    public function createSite($domain, $data = []) {
+    public function createSite($domain, $data = [])
+    {
         $data = array_merge(["domain"=>$domain], $data);
         $client = Utils\CloudClient::getClient();
         $site_data = json_decode($client->post($this->url . "/site", $data)->body)->site;
@@ -141,7 +149,8 @@ class User extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listSites($search_params = []) {
+    public function listSites($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/site", $search_params);
         return new Utils\CloudList($res, "WeeblyCloud\Site", array("user_id"=>$this->user_id));
@@ -154,7 +163,8 @@ class User extends Utils\CloudResource
      *
      * @return Site
      */
-    public function getSite($site_id) {
+    public function getSite($site_id)
+    {
         return new Site($this->user_id, $site_id);
     }
 }

@@ -45,7 +45,8 @@ abstract class CloudResource
     /**
      * Gets the object's properties from the database.
      */
-    public function get() {
+    public function get()
+    {
 
         $this->got = true;
         $res = CloudClient::getClient()->get($this->url);
@@ -59,7 +60,8 @@ abstract class CloudResource
      *
      * @return mixed
      */
-    public function getProperty($property) {
+    public function getProperty($property)
+    {
         if (!$this->got && !isset($this->properties->$property)) {
             $this->get();
         }
@@ -73,7 +75,8 @@ abstract class CloudResource
     *
     * @return object Properties extracted from JSON.
     */
-    protected function propertiesFromJSON($json){
+    protected function propertiesFromJSON($json)
+    {
         return json_decode($json);
     }
 }

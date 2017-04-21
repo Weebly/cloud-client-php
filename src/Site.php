@@ -40,7 +40,8 @@ class Site extends Utils\CloudResource
      *          is false.
      * @return Site
      */
-    public function __construct($user_id, $site_id, $initialize = true, $existing = null) {
+    public function __construct($user_id, $site_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->site_id = $site_id;
         $this->url = "user/$user_id/site/$site_id";
@@ -58,14 +59,16 @@ class Site extends Utils\CloudResource
      *
      * @return object
      */
-    protected function propertiesFromJSON($json) {
+    protected function propertiesFromJSON($json)
+    {
         return json_decode($json)->site;
     }
 
     /**
      * Publishes a site.
      */
-    public function publish() {
+    public function publish()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/publish");
     }
@@ -73,7 +76,8 @@ class Site extends Utils\CloudResource
     /**
      * Unpublishes a site.
      */
-    public function unpublish() {
+    public function unpublish()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/unpublish");
     }
@@ -85,7 +89,8 @@ class Site extends Utils\CloudResource
      *
      * @return string
      */
-    public function loginLink() {
+    public function loginLink()
+    {
         $client = Utils\CloudClient::getClient();
         return json_decode($client->post($this->url . "/loginLink")->body)->link;
     }
@@ -100,7 +105,8 @@ class Site extends Utils\CloudResource
      *                    are publish_host, publish_username, publish_password,
      *                    and publish_path.
      */
-    public function setPublishCredentials($data) {
+    public function setPublishCredentials($data)
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/setPublishCredentials", $data);
     }
@@ -111,7 +117,8 @@ class Site extends Utils\CloudResource
      *
      * @param string $domain The domain of the site.
      */
-    public function restore($domain) {
+    public function restore($domain)
+    {
         $client = Utils\CloudClient::getClient();
         $client->post(
             $this->url . "/restore",
@@ -122,7 +129,8 @@ class Site extends Utils\CloudResource
     /**
      * Enables a site, allowing it to be edited.
      */
-    public function enable() {
+    public function enable()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/enable");
     }
@@ -131,7 +139,8 @@ class Site extends Utils\CloudResource
      * Disables a site, preventing the user from
      * accessing it through the editor.
      */
-    public function disable() {
+    public function disable()
+    {
         $client = Utils\CloudClient::getClient();
         $client->post($this->url . "/disable");
     }
@@ -141,7 +150,8 @@ class Site extends Utils\CloudResource
      *
      * @return Plan
      */
-    public function getPlan() {
+    public function getPlan()
+    {
         $res = Utils\CloudClient::getClient()->get($this->url . "/plan")->body;
         return Plan::arrayFromJSON([], $res)[0];
     }
@@ -152,7 +162,8 @@ class Site extends Utils\CloudResource
      * @param string $plan_id ID of the plan to assign to the site.
      * @param int $term Optional term length, defaults to 1.
      */
-    public function setPlan($plan_id, $term = 1) {
+    public function setPlan($plan_id, $term = 1)
+    {
         $client = Utils\CloudClient::getClient();
         $client->post(
             $this->url . "/plan",
@@ -166,7 +177,8 @@ class Site extends Utils\CloudResource
      * @param string $theme_id The ID of the theme.
      * @param bool $is_custom Whether or not the theme is a custom theme.
      */
-    public function setTheme($theme_id, $is_custom) {
+    public function setTheme($theme_id, $is_custom)
+    {
         $client = Utils\CloudClient::getClient();
         $client->post(
             $this->url . "/theme",
@@ -179,7 +191,8 @@ class Site extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listBlogs() {
+    public function listBlogs()
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/blog");
         return new Utils\CloudList(
@@ -196,7 +209,8 @@ class Site extends Utils\CloudResource
      *
      * @return Blog
      */
-    public function getBlog($blog_id) {
+    public function getBlog($blog_id)
+    {
         return new Blog($this->user_id, $this->site_id, $blog_id);
     }
 
@@ -207,7 +221,8 @@ class Site extends Utils\CloudResource
      *              documentation for valid parameters.
      * @return Utils\CloudList
      */
-    public function listForms($search_params = []) {
+    public function listForms($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/form", $search_params);
         return new Utils\CloudList(
@@ -224,7 +239,8 @@ class Site extends Utils\CloudResource
      *
      * @return Form
      */
-    public function getForm($form_id) {
+    public function getForm($form_id)
+    {
         return new Form($this->user_id, $this->site_id, $form_id);
     }
 
@@ -236,7 +252,8 @@ class Site extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listPages($search_params = []) {
+    public function listPages($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/page", $search_params);
         return new Utils\CloudList(
@@ -253,7 +270,8 @@ class Site extends Utils\CloudResource
      *
      * @return Page
      */
-    public function getPage($page_id) {
+    public function getPage($page_id)
+    {
         return new Page($this->user_id, $this->site_id, $page_id);
     }
 
@@ -265,7 +283,8 @@ class Site extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listGroups($search_params = []) {
+    public function listGroups($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/group", $search_params);
         return new Utils\CloudList(
@@ -281,7 +300,8 @@ class Site extends Utils\CloudResource
      *
      * @return Group
      */
-    public function getGroup($group_id) {
+    public function getGroup($group_id)
+    {
         return new Group($this->user_id, $this->site_id, $group_id);
     }
 
@@ -292,7 +312,8 @@ class Site extends Utils\CloudResource
      *
      * @return Group
      */
-    public function createGroup($name) {
+    public function createGroup($name)
+    {
         $client = Utils\CloudClient::getClient();
         $group = json_decode($client->post($this->url . "/group", ["name"=>$name])->body);
         return new Group($this->user_id, $this->site_id, $group->group_id, false, $group);
@@ -306,7 +327,8 @@ class Site extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listMembers($search_params = []) {
+    public function listMembers($search_params = [])
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/member", $search_params);
         return new Utils\CloudList(
@@ -323,7 +345,8 @@ class Site extends Utils\CloudResource
      *
      * @return Member
      */
-    public function getMember($member_id) {
+    public function getMember($member_id)
+    {
         return new Member($this->user_id, $this->site_id, $member_id);
     }
 
@@ -335,7 +358,8 @@ class Site extends Utils\CloudResource
      *
      * @return Member
      */
-    public function createMember($data) {
+    public function createMember($data)
+    {
         $client = Utils\CloudClient::getClient();
         $member = json_decode($client->post($this->url . "/member", $data)->body);
         return new Member($this->user_id, $this->site_id, $member->member_id, false, $member);
@@ -354,7 +378,8 @@ class Site extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $user_id = $ids["user_id"];
         $sites = array();
         $arr = json_decode($json)->sites;

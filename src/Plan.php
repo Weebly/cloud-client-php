@@ -30,7 +30,8 @@ class Plan extends Utils\CloudResource
      * @param object $existing Object to use as the Plan's properties if initialize
      *          is false.
      */
-    public function __construct($plan_id, $initialize = true, $existing = null) {
+    public function __construct($plan_id, $initialize = true, $existing = null)
+    {
         $this->url = "plan/$plan_id";
         $this->plan_id = $plan_id;
         if ($initialize) {
@@ -46,7 +47,8 @@ class Plan extends Utils\CloudResource
      * @param string $json JSON from an API response.
      * @return object
      */
-    protected function propertiesFromJSON($json) {
+    protected function propertiesFromJSON($json)
+    {
         $plan_id = $this->plan_id;
         return json_decode($json)->plans->$plan_id;
     }
@@ -64,10 +66,11 @@ class Plan extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $plans = array();
         $arr = json_decode($json)->plans;
-        foreach ($arr as $id=>$plan) {
+        foreach ($arr as $id => $plan) {
             $plans[] = new Plan($id, false, $plan);
         }
         return $plans;

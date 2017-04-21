@@ -47,7 +47,8 @@ class Blog extends Utils\CloudResource
      *          is false.
      * @return Blog
      */
-    public function __construct($user_id, $site_id, $blog_id, $initialize = true, $existing = null) {
+    public function __construct($user_id, $site_id, $blog_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->site_id = $site_id;
         $this->blog_id = $blog_id;
@@ -64,7 +65,8 @@ class Blog extends Utils\CloudResource
      *
      * @return Utils\CloudList
      */
-    public function listBlogPosts() {
+    public function listBlogPosts()
+    {
         $client = Utils\CloudClient::getClient();
         $res =  $client->getList($this->url . "/post");
         return new Utils\CloudList(
@@ -81,7 +83,8 @@ class Blog extends Utils\CloudResource
      *
      * @return BlogPost
      */
-    public function getBlogPost($post_id) {
+    public function getBlogPost($post_id)
+    {
         return new BlogPost($this->user_id, $this->site_id, $this->blog_id, $post_id);
     }
 
@@ -93,7 +96,8 @@ class Blog extends Utils\CloudResource
      *
      * @return BlogPost
      */
-    public function createBlogPost($post_body, $data = []) {
+    public function createBlogPost($post_body, $data = [])
+    {
         $data["post_body"] = $post_body;
         $client = Utils\CloudClient::getClient();
         $post = json_decode($client->post($this->url . "/post", $data)->body);
@@ -113,7 +117,8 @@ class Blog extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $user_id = $ids["user_id"];
         $site_id = $ids["site_id"];
         $blogs = array();

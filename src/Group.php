@@ -47,7 +47,8 @@ class Group extends Utils\CloudResource
      * @param object $existing Object to use as the Group's properties if initialize
      *          is false.
      */
-    public function __construct($user_id, $site_id, $group_id, $initialize = true, $existing = null) {
+    public function __construct($user_id, $site_id, $group_id, $initialize = true, $existing = null)
+    {
         $this->user_id = $user_id;
         $this->site_id = $site_id;
         $this->group_id = $group_id;
@@ -72,7 +73,8 @@ class Group extends Utils\CloudResource
      *
      * @return array
      */
-    public static function arrayFromJSON($ids, $json) {
+    public static function arrayFromJSON($ids, $json)
+    {
         $user_id = $ids["user_id"];
         $site_id = $ids["site_id"];
         $groups = array();
@@ -82,5 +84,4 @@ class Group extends Utils\CloudResource
         }
         return $groups;
     }
-
 }
