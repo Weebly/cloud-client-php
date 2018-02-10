@@ -172,6 +172,17 @@ class Site extends Utils\CloudResource
     }
 
     /**
+     * Gets the Store assigned to the site.
+     *
+     * @return Store 
+     */
+    public function getStore()
+    {
+        $res = Utils\CloudClient::getClient()->get($this->url . "/store")->body;
+        return new Store($this->user_id, $this->site_id);
+    }
+
+    /**
      * Assigns a theme to the site by ID.
      *
      * @param string $theme_id The ID of the theme.
