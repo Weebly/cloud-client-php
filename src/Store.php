@@ -61,25 +61,6 @@ class Store extends Utils\CloudResource
     }
 
     /**
-     * Returns a CloudList of Products belonging to this store.
-     *
-     * @param array $search_params Search query parameters. See the API
-     *              documentation for valid parameters.
-     *
-     * @return Utils\CloudList
-     */
-    public function listProducts($search_params = [])
-    {
-        $client = Utils\CloudClient::getClient();
-        $res =  $client->getList($this->url . "/product", $search_params);
-        return new Utils\CloudList(
-            $res,
-            "WeeblyCloud\Product",
-            array("user_id"=>$this->user_id, "site_id"=>$this->site_id)
-        );
-    }
-
-    /**
      * Returns the count of Products for this store..
      *
      * @return Integer 

@@ -126,7 +126,11 @@ Retrieve information about a site's store:
 
 Retrieve a list of products in the site's store:
 
-	$products = $store->listProducts();
+    $site = new WeeblyCloud\Site($_ENV['USER_ID'], $_ENV['SITE_ID'], true);
+    $store = $site->getStore;
+	$products = $site->listProducts();
+    // Get quantity of products in the store
+    $numberOfProductsInStore = $site->getProductCount();
 	while ($product = $products->next()) {
 		print($product->getProperty("name")."\n");
 	}
@@ -278,6 +282,10 @@ To construct:
 - **`setTheme($theme_id, $is_custom)`** Assign a theme to the site by ID. Requires a parameter **is_custom**, distinguishing whether the theme is a Weebly theme or a custom theme.
 - **`createMember($data)`** Creates a new `Member` of the site in the database. Returns the newly created `Member`.
 - **`createGroup($name)`** Creates a new `Group` of members of the site in the database. Returns the newly created `Group`.
+- **`listProducts($search_params)`** Retrieves a list of products for the store, subject to search parameters.
+- **`getProductCount()`** Returns the number of products in the store.
+- **`createProduct($product_name, $product_skus, $data = [])`** Creates a new `Product` in the `Store` in the database. Returns the newly created `Product`.
+- **`getProduct($product_id)`** Retrieves a specific `Product` from the `Store` by ID.
 
 
 ### Store
@@ -290,10 +298,6 @@ To construct:
 	$store = new WeeblyCloud\Store($user_id, $site_id);
 
 - **`updateStore($values)`** Update the store with provided values.
-- **`listProducts($search_params)`** Retrieves a list of products for the store, subject to search parameters.
-- **`getProductCount()`** Returns the number of products in the store.
-- **`createProduct($product_name, $product_skus, $data = [])`** Creates a new `Product` in the `Store` in the database. Returns the newly created `Product`.
-- **`getProduct($product_id)`** Retrieves a specific `Product` from the `Store` by ID.
 
 ### User
 [API Documentation](https://cloud-developer.weebly.com/user.html)
