@@ -172,6 +172,57 @@ class Site extends Utils\CloudResource
     }
 
     /**
+     * Gets the Store assigned to the site.
+     *
+     * @return Store
+     */
+    public function getStore()
+    {
+        $res = Utils\CloudClient::getClient()->get($this->url . "/store")->body;
+        return new Store($this->user_id, $this->site_id, true, $res);
+    }
+
+    /**
+     * Gets the Number of Products for a Store.
+     *
+     * @return Store
+     */
+    public function getProductCount()
+    {
+        $res = Utils\CloudClient::getClient()->get($this->url . "/store/product/count")->body;
+        $arr = json_decode($res);
+        return $arr->count;
+    }
+
+    /**
+     * Returns a CloudList of Products on this Site.
+     *
+     * @return Utils\CloudList 
+     */
+    public function listProducts($search_params = [])
+    {
+        $client = Utils\CloudClient::getClient();
+        $res = $client->getList($this->url . "/store/product", $search_params);
+        return new Utils\CloudList(
+            $res,
+            "\WeeblyCloud\Product",
+            array("user_id"=>$this->user_id, "site_id"=>$this->site_id)
+        );
+    }
+
+    /**
+     * Returns the Product with the given id.
+     *
+     * @param string $product_id ID of the Product to return.
+     *
+     * @return Product
+     */
+    public function getProduct($product_id)
+    {
+        return new Product($this->user_id, $this->site_id, $product_id);
+    }
+
+    /**
      * Assigns a theme to the site by ID.
      *
      * @param string $theme_id The ID of the theme.

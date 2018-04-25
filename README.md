@@ -114,9 +114,27 @@ For example, to create an object representing a site with id `$site_id` and owne
 
 All resource constructors have two optional parameters, `initialize` (true by default) and `existing`. If `initialize` is set to false, the properties of the object are not retrieved from the database when the object is instantiated. Instead, `existing` is used to set the object's properties. This can be used to reduce unecessary API calls when chaining calls.
 
-For example, to retrieve all the sites of a user without getting that user's information:
+#### Examples
+
+Retrieve all the sites of a user without getting that user's information:
 
 	$sites = (new WeeblyCloud\User($user_id, false))->listSites();
+
+Retrieve information about a site's store:
+
+	$store = (new WeeblyCloud\Site($user_id, $site_id))->getStore();
+
+Retrieve a list of products in the site's store:
+
+    $site = new WeeblyCloud\Site($_ENV['USER_ID'], $_ENV['SITE_ID'], true);
+    $store = $site->getStore;
+	$products = $site->listProducts();
+    // Get quantity of products in the store
+    $numberOfProductsInStore = $site->getProductCount();
+	while ($product = $products->next()) {
+		print($product->getProperty("name")."\n");
+	}
+
 
 ### Iterable Results
 Methods beginning with `list` return a `CloudList`. Use the `next` function or a foreach loop to iterate through the list. For example:
@@ -220,6 +238,18 @@ A **mutable** and **deletable** respresentation of a member. To construct:
 
 	$member = new WeeblyCloud\Member($user_id, $site_id, $member_id);
 
+### Product 
+[API Documentation](https://cloud-developer.weebly.com/product.html)
+
+A **mutable** and **deletable** respresentation of a site. To construct:
+
+To construct:
+
+	$product = new WeeblyCloud\Product($user_id, $site_id, $product_id);
+
+- **`publish()`** Publishes the site.
+- **`unpublish()`** Unpublishes the site.
+
 ### Site
 [API Documentation](https://cloud-developer.weebly.com/site.html)
 
@@ -246,11 +276,28 @@ To construct:
 - **`getGroup($group_id)`** Return the `Group` with the given id.
 - **`getForm($form_id)`** Return the `Form` with the given id.
 - **`getBlog($blog_id)`** Return the `Blog` with the given id.
+- **`getStore()`** Return the `Store` resource for the site.
 - **`getPlan()`** Returns the `Plan` resource for the site.
 - **`setPlan($plan_id, $term = 1)`** Assign a plan to the site with an optional term length.
 - **`setTheme($theme_id, $is_custom)`** Assign a theme to the site by ID. Requires a parameter **is_custom**, distinguishing whether the theme is a Weebly theme or a custom theme.
 - **`createMember($data)`** Creates a new `Member` of the site in the database. Returns the newly created `Member`.
 - **`createGroup($name)`** Creates a new `Group` of members of the site in the database. Returns the newly created `Group`.
+- **`listProducts($search_params)`** Retrieves a list of products for the store, subject to search parameters.
+- **`getProductCount()`** Returns the number of products in the store.
+- **`createProduct($product_name, $product_skus, $data = [])`** Creates a new `Product` in the `Store` in the database. Returns the newly created `Product`.
+- **`getProduct($product_id)`** Retrieves a specific `Product` from the `Store` by ID.
+
+
+### Store
+[API Documentation](https://cloud-developer.weebly.com/store.html)
+
+A **mutable** respresentation of a site. To construct:
+
+To construct:
+
+	$store = new WeeblyCloud\Store($user_id, $site_id);
+
+- **`updateStore($values)`** Update the store with provided values.
 
 ### User
 [API Documentation](https://cloud-developer.weebly.com/user.html)
