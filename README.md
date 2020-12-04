@@ -2,11 +2,11 @@
 
 ## Installation
 
-###Composer
+### Composer
 
 	composer require weebly/cloud-client
 
-###Other
+### Other
 Download the latest release and include init.php in your code.
 
 	require_once("path/to/cloud-client-php/src/init.php");
@@ -148,7 +148,7 @@ while ($site = $sites->next()) {
 ```
 This would list the titles of all sites belonging to a given user.
 
-##Resource Types
+## Resource Types
 
 In addition to this readme, each resource class has phpdoc documentation. To view that documentation, install phpDocumentor and run these commands in the cloud-client-php directory:
 
@@ -370,7 +370,7 @@ print($response->body);
 ```
 
 
-###Pagination example
+### Pagination example
 If the endpoint supports pagination, the next and previous pages of results can be retrieved with the `getPreviousPage()` and `getNextPage()` methods. If there is no next or previous page, those methods return null.
 
 ```php
